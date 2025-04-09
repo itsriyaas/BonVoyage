@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Home() {
+  const images = [
+    "assets/img/traveller 1.jpeg",
+    "assets/img/travel2.jpeg",
+    "assets/img/travel3.jpeg"
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
   return (
     <div>
       <div className="container-fluid bg-primary py-5 mb-5 hero-header">
@@ -21,9 +40,10 @@ export default function Home() {
         </div>
       </div>
             {/* About Start */}
-    <div className="container-xxl py-5">
+            <div className="container-xxl py-5">
       <div className="container">
         <div className="row g-5">
+          {/* Image Section with Carousel */}
           <div
             className="col-lg-6 wow fadeInUp"
             data-wow-delay="0.1s"
@@ -32,12 +52,22 @@ export default function Home() {
             <div className="position-relative h-100">
               <img
                 className="img-fluid position-absolute w-100 h-100"
-                src="assets/img/traveller 1.jpeg"
-                alt=""
-                style={{ objectFit: "cover" }}
+                src={images[currentImageIndex]}
+                alt="travel"
+                style={{ objectFit: "cover", transition: "0.5s ease" }}
               />
+              <div className="position-absolute bottom-0 start-0 p-3 d-flex gap-2">
+                <button className="btn btn-sm btn-light" onClick={prevImage}>
+                  &#8592; Prev
+                </button>
+                <button className="btn btn-sm btn-light" onClick={nextImage}>
+                  Next &#8594;
+                </button>
+              </div>
             </div>
           </div>
+
+          {/* Text Section */}
           <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
             <h6 className="section-title bg-white text-start text-primary pe-3">
               About Us
@@ -46,16 +76,22 @@ export default function Home() {
               Welcome to <span className="text-primary">Bon voyage</span>
             </h1>
             <p className="mb-4">
-            At Bon Voyage, we believe every journey should be unforgettable. Whether you're chasing sunsets on tropical beaches, wandering through ancient cities, or seeking thrilling adventures off the beaten path — we've got you covered.
+              At Bon Voyage, we believe every journey should be unforgettable.
+              Whether you're chasing sunsets on tropical beaches, wandering
+              through ancient cities, or seeking thrilling adventures off the
+              beaten path — we've got you covered.
             </p>
             <p className="mb-4">
-            Our team of passionate travel experts is here to turn your dream getaway into a reality. With customized packages, seamless planning, and 24/7 support, your only job is to pack your bags and get ready for an experience of a lifetime.
+              Our team of passionate travel experts is here to turn your dream
+              getaway into a reality. With customized packages, seamless
+              planning, and 24/7 support, your only job is to pack your bags and
+              get ready for an experience of a lifetime.
             </p>
             <div className="row gy-2 gx-4 mb-4">
               <div className="col-sm-6">
                 <p className="mb-0">
-                  <i className="fa fa-arrow-right text-primary me-2" />5 Star
-                  Accommodations
+                  <i className="fa fa-arrow-right text-primary me-2" />
+                  5 Star Accommodations
                 </p>
               </div>
               <div className="col-sm-6">
