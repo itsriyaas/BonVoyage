@@ -69,7 +69,7 @@ export default function Footer() {
               </a>
               , All Right Reserved.
               Designed By{" "}
-              <a className="border-bottom" href="https://github.com/itsriyas-exe">
+              <a className="border-bottom" href="https://github.com/itsriyaas">
                 itsriyas.dev
               </a>
             </div>
